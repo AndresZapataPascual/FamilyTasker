@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+
+    implementation("com.airbnb.android:lottie:6.4.0")
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("androidx.appcompat:appcompat:1.6.1")
