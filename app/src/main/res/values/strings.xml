@@ -7,4 +7,7 @@
     <string name="buttonLogin">Iniciar Sesión</string>
     <string name="VinculoSeccion">¿No tienes una cuenta? Regístrate aquí</string>
     <string name="VinculoInicio">¿Ya tienes una cuenta? Inicia Seccion aquí</string>
+    <string name="HintNombrelista">Nombre de la lista</string>
+    <string name="textBtnCrearLista">Crear</string>
+    <string name="TxtTituloListaTareas">Mi lista:</string>
 </resources>

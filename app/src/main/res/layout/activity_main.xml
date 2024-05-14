@@ -36,7 +36,7 @@
 
     <!-- Campos de entrada para correo electrónico y contraseña -->
     <EditText
-        android:id="@+id/editTextEmail"
+        android:id="@+id/editTextCorreo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -53,7 +53,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editTextContraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -70,7 +70,7 @@
     </EditText>
     <!-- Botón de inicio de sesión -->
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/buttonLogin"

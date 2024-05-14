@@ -21,6 +21,10 @@
             android:name=".RegistroActivity"
             android:exported="false"/>
 
+        <activity
+            android:name=".ListaActivity"
+            android:exported="false"/>
+
 
         <activity
             android:name=".Pantalla_splash"
