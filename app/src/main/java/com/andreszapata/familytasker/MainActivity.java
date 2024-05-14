@@ -90,8 +90,6 @@ public class MainActivity extends AppCompatActivity {
                         // Manejar errores de base de datos
                         Toast.makeText(MainActivity.this, "Error de base de datos: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-
-
                 });
             }
         });
