@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">FAMILY TASKER</string>
     <string name="HintEmail">Email</string>
+    <string name="HintName">Nombre</string>
     <string name="HintPassword">Password</string>
-    <string name="ButtonSeccion">Iniciar Sesión</string>
+    <string name="buttonRegistrar">Iniciar Sesión</string>
     <string name="VinculoSeccion">¿No tienes una cuenta? Regístrate aquí</string>
+    <string name="VinculoInicio">¿Ya tienes una cuenta? Inicia Seccion aquí</string>
 </resources>

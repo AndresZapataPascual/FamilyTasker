@@ -81,11 +81,12 @@
         android:paddingBottom="12dp" />
 
     <!-- Enlace para crear cuenta -->
-    <TextView
-        android:id="@+id/textViewSignUp"
+    <Button
+        android:id="@+id/buttonSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:background="@android:color/transparent"
         android:textColor="@color/black"
         android:text="@string/VinculoSeccion" />
 

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     android:padding="16dp">
 
     <!-- Encabezado con el logo y el nombre de la app -->
@@ -32,13 +33,13 @@
     </LinearLayout>
 
     <!-- Campos de entrada para correo electrónico y contraseña -->
+
     <EditText
-        android:id="@+id/editTextEmail"
+        android:id="@+id/editTextNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="@string/HintEmail"
-        android:backgroundTint="@color/black"
+        android:hint="@string/HintName"
         android:textColorHint="@color/black"
         android:textColor="@android:color/black"
         android:paddingStart="16dp"
@@ -50,12 +51,27 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editTextCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/HintEmail"
+        android:textColorHint="@color/black"
+        android:textColor="@android:color/black"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textSize="16sp"
+        android:inputType="textEmailAddress" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/editTextContraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="@string/HintPassword"
-        android:backgroundTint="@color/black"
         android:textColor="@android:color/black"
         android:textColorHint="@color/black"
         android:paddingStart="16dp"
@@ -63,14 +79,14 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:textSize="16sp"
-        android:inputType="textPassword" >
-    </EditText>
+        android:inputType="textPassword" />
+
     <!-- Botón de inicio de sesión -->
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ButtonSeccion"
+        android:text="@string/buttonRegistrar"
         android:textSize="18sp"
         android:textColor="@android:color/white"
         android:backgroundTint="@color/black"
@@ -78,12 +94,13 @@
         android:paddingBottom="12dp" />
 
     <!-- Enlace para crear cuenta -->
-    <TextView
-        android:id="@+id/textViewSignUp"
+    <Button
+        android:id="@+id/ButonIniciar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/black"
-        android:text="@string/VinculoSeccion" />
+        android:background="@android:color/transparent"
+        android:text="@string/VinculoInicio" />
 
 </LinearLayout>
