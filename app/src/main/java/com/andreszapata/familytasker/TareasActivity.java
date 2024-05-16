@@ -2,7 +2,6 @@ package com.andreszapata.familytasker;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -18,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class TareasActivity extends AppCompatActivity {
 
     private EditText editTextTarea;
@@ -26,6 +27,8 @@ public class TareasActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private String idLista;
+    private TareaAdapter tareaAdapter;
+    private ArrayList<Tarea> tareas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,11 @@ public class TareasActivity extends AppCompatActivity {
         buttonCrearTarea = findViewById(R.id.buttonCreateTarea);
         listViewTareas = findViewById(R.id.listViewtasks);
 
+        // Inicializar la lista de tareas y el adaptador
+        tareas = new ArrayList<>();
+        tareaAdapter = new TareaAdapter(this, tareas);
+        listViewTareas.setAdapter(tareaAdapter);
+
         // Cargar las tareas asociadas a la lista
         cargarTareas();
 
@@ -64,7 +72,8 @@ public class TareasActivity extends AppCompatActivity {
                     String tareaId = databaseReference.push().getKey();
 
                     // Guardar la tarea en la base de datos asociada al ID de la lista
-                    databaseReference.child(tareaId).setValue(new Tarea(tareaId, nombreTarea));
+                    Tarea nuevaTarea = new Tarea(tareaId, nombreTarea, idLista); // Aquí se pasa el ID de la lista
+                    databaseReference.child(tareaId).setValue(nuevaTarea);
 
                     // Limpiar el campo de texto después de guardar la tarea
                     editTextTarea.setText("");
@@ -80,23 +89,19 @@ public class TareasActivity extends AppCompatActivity {
     }
 
     private void cargarTareas() {
-        // Crear un adaptador para las tareas
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-
-        // Establecer el adaptador en la lista de tareas
-        listViewTareas.setAdapter(adapter);
-
         // Escuchar los cambios en la base de datos para cargar las tareas asociadas a la lista
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                adapter.clear(); // Limpiar el adaptador antes de cargar las nuevas tareas
+                tareas.clear(); // Limpiar la lista antes de cargar las nuevas tareas
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Tarea tarea = snapshot.getValue(Tarea.class);
                     if (tarea != null) {
-                        adapter.add(tarea.getNombre()); // Agregar el nombre de la tarea al adaptador
+                        tareas.add(tarea); // Agregar la tarea a la lista
                     }
                 }
+                // Notificar al adaptador que los datos han cambiado
+                tareaAdapter.notifyDataSetChanged();
             }
 
             @Override
