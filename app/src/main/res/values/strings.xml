@@ -11,4 +11,7 @@
     <string name="textBtnCrearLista">Crear</string>
     <string name="TxtTituloListaTareas">Mi lista:</string>
     <string name="TxtTituloTareas">Tareas</string>
+    <string name="HintNombreTarea">Creé una Tarea</string>
+    <string name="txtTerminada">Completar</string>
+    <string name="txtEliminar">Eliminar </string>
 </resources>

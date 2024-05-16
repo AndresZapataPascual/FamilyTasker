@@ -57,6 +57,13 @@ public class ListaActivity extends AppCompatActivity {
         buttonCreateList = findViewById(R.id.buttonCreateList);
         listViewLists = findViewById(R.id.listViewLists);
 
+        // Inicializar la lista
+        listas = new ArrayList<>();
+
+        // Inicializar el adaptador
+        listaAdapter = new ListaAdapter(this, listas);
+        listViewLists.setAdapter(listaAdapter);
+
         // Cargar las listas del usuario desde la base de datos
         cargarListasUsuario(idUsuario);
 

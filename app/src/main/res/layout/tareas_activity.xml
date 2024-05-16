@@ -31,11 +31,11 @@
             android:layout_margin="10dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="@string/HintNombrelista" />
+            android:hint="@string/HintNombreTarea" />
 
         <!-- Botón para crear la lista -->
         <Button
-            android:id="@+id/buttonCreateList"
+            android:id="@+id/buttonCreateTarea"
             android:layout_width="85dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
@@ -55,7 +55,7 @@
         android:layout_marginTop="16dp"/>
 
     <ListView
-        android:id="@+id/listViewLists"
+        android:id="@+id/listViewtasks"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
