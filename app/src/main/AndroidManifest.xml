@@ -25,6 +25,9 @@
             android:name=".ListaActivity"
             android:exported="false"/>
 
+        <activity
+            android:name=".TareasActivity"
+            android:exported="false"/>
 
         <activity
             android:name=".Pantalla_splash"

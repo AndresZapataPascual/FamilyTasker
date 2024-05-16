@@ -6,35 +6,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListaAdapter extends ArrayAdapter<Lista> {
 
-    private ArrayList<Lista> listas;
-    private Context context;
-
-    public ListaAdapter(Context context, ArrayList<Lista> listas) {
+    public ListaAdapter(Context context, List<Lista> listas) {
         super(context, 0, listas);
-        this.context = context;
-        this.listas = listas;
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // Verificar si la vista actual está siendo reutilizada, de lo contrario, inflar la vista
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        // Obtiene el objeto Lista en la posición dada
+        Lista lista = getItem(position);
+
+        // Verifica si una vista existente está siendo reutilizada, de lo contrario infla la vista
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_lista, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
         }
 
-        // Obtener la lista actual
-        Lista lista = listas.get(position);
-
-        // Obtener referencias a las vistas en el layout del item
-        TextView textViewListName = convertView.findViewById(R.id.textViewListName);
-
-        // Establecer los datos de la lista en las vistas
-        textViewListName.setText(lista.getNombre());
+        // Busca el TextView en la vista inflada y establece el nombre de la lista
+        TextView textView = convertView.findViewById(android.R.id.text1);
+        if (lista != null) {
+            textView.setText(lista.getNombre());
+        }
 
         return convertView;
     }
 }
+

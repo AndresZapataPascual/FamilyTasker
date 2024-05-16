@@ -10,4 +10,5 @@
     <string name="HintNombrelista">Nombre de la lista</string>
     <string name="textBtnCrearLista">Crear</string>
     <string name="TxtTituloListaTareas">Mi lista:</string>
+    <string name="TxtTituloTareas">Tareas</string>
 </resources>

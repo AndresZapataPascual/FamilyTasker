@@ -28,4 +28,9 @@ public class Lista {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return nombre; // Devuelve solo el nombre de la lista al convertir a String
+    }
 }
