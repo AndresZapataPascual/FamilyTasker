@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:background="@color/white">
@@ -13,7 +14,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/black"
         android:theme="?attr/actionBarTheme"
-        android:titleTextColor="@android:color/white"
+        app:titleTextColor="@color/white"
         android:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
 
 
@@ -40,6 +41,8 @@
             android:layout_width="85dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/black"
             android:text="@string/textBtnCrearLista" />
 
     </LinearLayout>

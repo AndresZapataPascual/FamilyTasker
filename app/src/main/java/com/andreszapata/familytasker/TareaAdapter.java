@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -64,20 +67,35 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
         });
 
         // Manejar el clic en el botón "Eliminar"
+        // Manejar el clic en el botón "Eliminar"
         buttonEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Obtener la tarea seleccionada
-                // Obtener la posición de la tarea
-                int position = getPosition(tarea);
-                // Eliminar la tarea de la lista
-                remove(tarea);
-                // Eliminar la tarea de la base de datos
-                // Notificar al adaptador que los datos han cambiado
-                notifyDataSetChanged();
+                Tarea tarea = getItem(position); // Obtener la tarea actual
+                if (tarea != null) {
+                    // Obtener la referencia a la base de datos
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Tareas").child(tarea.getIdLista()).child(tarea.getId());
+
+                    // Eliminar la tarea de la base de datos
+                    databaseReference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                // Si la eliminación de la base de datos es exitosa, elimina la tarea de la lista local
+                                remove(tarea);
+                                // Notificar al adaptador que los datos han cambiado
+                                notifyDataSetChanged();
+                                Toast.makeText(getContext(), "Tarea eliminada correctamente", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Si hay un error al eliminar la tarea de la base de datos, muestra un mensaje de error
+                                Toast.makeText(getContext(), "Error al eliminar la tarea: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
             }
         });
-
 
         return listItemView;
     }

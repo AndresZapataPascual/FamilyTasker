@@ -1,6 +1,7 @@
 package com.andreszapata.familytasker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,25 @@ public class ListaAdapter extends ArrayAdapter<Lista> {
         if (lista != null) {
             textViewListName.setText(lista.getNombre());
 
+
+            // Establecer OnClickListener para el texto del elemento de la lista
+            textViewListName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Obtener el objeto Lista seleccionado
+                    Lista listaSeleccionada = getItem(position);
+
+                    // Crear un Intent para abrir la actividad de tareas
+                    Intent intent = new Intent(getContext(), TareasActivity.class);
+
+                    // Pasar el nombre e ID de la lista a la actividad de tareas
+                    intent.putExtra("nombreLista", listaSeleccionada.getNombre());
+                    intent.putExtra("idLista", listaSeleccionada.getId());
+
+                    // Iniciar la actividad de tareas
+                    getContext().startActivity(intent);
+                }
+            });
             buttonDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
