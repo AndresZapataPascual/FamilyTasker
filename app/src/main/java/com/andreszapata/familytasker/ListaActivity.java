@@ -42,6 +42,9 @@ public class ListaActivity extends AppCompatActivity {
         String nombreUsuario = getIntent().getStringExtra("nombreUsuario");
         String idUsuario = getIntent().getStringExtra("idUsuario");
 
+        // Guardar idUsuario en SharedPreferences para acceso en el adaptador
+        getSharedPreferences("prefs", MODE_PRIVATE).edit().putString("idUsuario", idUsuario).apply();
+
         // Configurar el Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -135,8 +138,4 @@ public class ListaActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 }

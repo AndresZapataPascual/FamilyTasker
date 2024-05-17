@@ -72,7 +72,7 @@ public class TareasActivity extends AppCompatActivity {
                     String tareaId = databaseReference.push().getKey();
 
                     // Guardar la tarea en la base de datos asociada al ID de la lista
-                    Tarea nuevaTarea = new Tarea(tareaId, nombreTarea, idLista); // Aquí se pasa el ID de la lista
+                    Tarea nuevaTarea = new Tarea(tareaId, nombreTarea, false, idLista);// Aquí se pasa el ID de la lista
                     databaseReference.child(tareaId).setValue(nuevaTarea);
 
                     // Limpiar el campo de texto después de guardar la tarea

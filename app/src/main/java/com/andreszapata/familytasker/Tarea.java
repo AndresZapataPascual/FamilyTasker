@@ -3,16 +3,18 @@ package com.andreszapata.familytasker;
 public class Tarea {
     private String id;
     private String nombre;
-    private String idLista; // Agregar el ID de la lista a la que pertenece la tarea
+    private boolean completada; // Nuevo campo para indicar si la tarea está completada
+    private String idLista;
 
     // Constructor vacío requerido para Firebase
     public Tarea() {
     }
 
-    public Tarea(String id, String nombre, String idLista) {
+    public Tarea(String id, String nombre, boolean completada, String idLista) {
         this.id = id;
         this.nombre = nombre;
-        this.idLista = idLista; // Asignar el ID de la lista
+        this.completada = completada;
+        this.idLista = idLista;
     }
 
     public String getId() {
@@ -29,6 +31,14 @@ public class Tarea {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public boolean isCompletada() {
+        return completada;
+    }
+
+    public void setCompletada(boolean completada) {
+        this.completada = completada;
     }
 
     public String getIdLista() {

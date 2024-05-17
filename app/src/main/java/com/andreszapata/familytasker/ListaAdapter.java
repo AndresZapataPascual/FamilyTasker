@@ -5,38 +5,53 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 public class ListaAdapter extends ArrayAdapter<Lista> {
 
+    private DatabaseReference databaseReference;
+
     public ListaAdapter(Context context, List<Lista> listas) {
         super(context, 0, listas);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Listas");
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        // Obtiene el objeto Lista en la posición dada
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Lista lista = getItem(position);
 
-        // Verifica si una vista existente está siendo reutilizada, de lo contrario infla la vista
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_lista, parent, false);
         }
 
-        // Busca el TextView en la vista inflada y establece el nombre de la lista
-        TextView textView = convertView.findViewById(android.R.id.text1);
+        TextView textViewListName = convertView.findViewById(R.id.textViewListName);
+        Button buttonDelete = convertView.findViewById(R.id.buttonDelete);
+
         if (lista != null) {
-            textView.setText(lista.getNombre());
+            textViewListName.setText(lista.getNombre());
+
+            buttonDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Eliminar la lista de Firebase
+                    String userId = getContext().getSharedPreferences("prefs", Context.MODE_PRIVATE).getString("idUsuario", null);
+                    if (userId != null) {
+                        databaseReference.child(userId).child(lista.getId()).removeValue();
+                    }
+                }
+            });
         }
 
         return convertView;
     }
 }
-

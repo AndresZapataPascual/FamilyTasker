@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="16sp"
+        android:padding="10dp"
         android:textColor="@android:color/black"/>
 
     <Button
@@ -25,4 +26,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txtEliminar"/>
+
 </LinearLayout>

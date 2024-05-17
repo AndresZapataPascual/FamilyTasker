@@ -1,6 +1,7 @@
 package com.andreszapata.familytasker;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,12 +45,21 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
         // Configurar el texto de la tarea
         textViewTarea.setText(tarea.getNombre());
 
+        // Cambiar el estilo del texto si la tarea está completada
+        if (tarea.isCompletada()) {
+            textViewTarea.setPaintFlags(textViewTarea.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            textViewTarea.setPaintFlags(textViewTarea.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+        }
+
         // Manejar el clic en el botón "Completar"
         buttonCompletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Aquí puedes agregar la lógica para marcar la tarea como completada
-                // Por ejemplo, podrías cambiar el estado de la tarea en la base de datos
+                tarea.setCompletada(!tarea.isCompletada());
+                // Guardar los cambios en la base de datos u otro almacenamiento
+                // Notificar al adaptador que los datos han cambiado
+                notifyDataSetChanged();
             }
         });
 
@@ -58,16 +68,13 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
             @Override
             public void onClick(View v) {
                 // Obtener la tarea seleccionada
-                Tarea tarea = getItem(position); // Asegúrate de que getItem(position) devuelva la tarea correcta
-
-                // Verificar si la tarea no es nula y tiene un ID
-                if (tarea != null && tarea.getId() != null) {
-                    // Eliminar la tarea de la base de datos
-                    databaseReference.child(tarea.getId()).removeValue(); // Asegúrate de que tarea.getId() no sea nulo
-                    Toast.makeText(getContext(), "Tarea eliminada correctamente", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getContext(), "Error: No se pudo eliminar la tarea", Toast.LENGTH_SHORT).show();
-                }
+                // Obtener la posición de la tarea
+                int position = getPosition(tarea);
+                // Eliminar la tarea de la lista
+                remove(tarea);
+                // Eliminar la tarea de la base de datos
+                // Notificar al adaptador que los datos han cambiado
+                notifyDataSetChanged();
             }
         });
 

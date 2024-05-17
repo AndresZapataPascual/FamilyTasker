@@ -14,4 +14,5 @@
     <string name="HintNombreTarea">Creé una Tarea</string>
     <string name="txtTerminada">Completar</string>
     <string name="txtEliminar">Eliminar </string>
+    <string name="itemlistatxtbtn">Eliminar</string>
 </resources>
