@@ -97,7 +97,8 @@ public class TareasActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Tarea tarea = snapshot.getValue(Tarea.class);
                     if (tarea != null) {
-                        tareas.add(tarea); // Agregar la tarea a la lista
+                        // Agregar la tarea a la lista
+                        tareas.add(tarea);
                     }
                 }
                 // Notificar al adaptador que los datos han cambiado
@@ -111,5 +112,37 @@ public class TareasActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void crearNuevaTarea(String nombreTarea) {
+        if (!nombreTarea.isEmpty()) {
+            // Generar un ID único para la tarea
+            String tareaId = databaseReference.push().getKey();
+
+            // Guardar la tarea en la base de datos asociada al ID de la lista
+            Tarea nuevaTarea = new Tarea(tareaId, nombreTarea, false, idLista); // Establecer el estado de completado inicial
+            databaseReference.child(tareaId).setValue(nuevaTarea);
+
+            // Limpiar el campo de texto después de guardar la tarea
+            editTextTarea.setText("");
+
+            // Notificar al usuario que la tarea se creó correctamente
+            Toast.makeText(TareasActivity.this, "Tarea creada correctamente", Toast.LENGTH_SHORT).show();
+        } else {
+            // Notificar al usuario si el campo de texto está vacío
+            Toast.makeText(TareasActivity.this, "Por favor, ingresa el nombre de la tarea", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    // Método para encontrar una tarea por su ID en la lista de tareas existente
+    private Tarea encontrarTareaPorId(String tareaId) {
+        for (Tarea tarea : tareas) {
+            if (tarea.getId().equals(tareaId)) {
+                return tarea;
+            }
+        }
+        return null;
+    }
+
 }
 
