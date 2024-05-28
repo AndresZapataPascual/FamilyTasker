@@ -42,7 +42,7 @@ public class ListaAdapter extends ArrayAdapter<Lista> {
             textViewListName.setText(lista.getNombre());
 
 
-            // Establecer OnClickListener para el texto del elemento de la lista
+
             textViewListName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

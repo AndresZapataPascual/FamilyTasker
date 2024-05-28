@@ -3,10 +3,10 @@ package com.andreszapata.familytasker;
 public class Tarea {
     private String id;
     private String nombre;
-    private boolean completada; // Nuevo campo para indicar si la tarea está completada
+    private boolean completada;
     private String idLista;
 
-    // Constructor vacío requerido para Firebase
+
     public Tarea() {
     }
 

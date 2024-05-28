@@ -121,7 +121,7 @@ public class ListaActivity extends AppCompatActivity {
     }
 
     private void cargarListasUsuario(String idUsuario) {
-        // Referencia a la ubicación en la base de datos donde se almacenan las listas del usuario
+
         DatabaseReference listaUsuarioRef = databaseReference.child(idUsuario);
 
         // Agregar un listener para escuchar los cambios en los datos de las listas del usuario
@@ -131,7 +131,7 @@ public class ListaActivity extends AppCompatActivity {
                 // Limpiar la lista de listas antes de cargar las nuevas listas
                 listas.clear();
 
-                // Iterar sobre las listas del usuario y agregarlas a la lista de listas
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Lista lista = snapshot.getValue(Lista.class);
                     if (lista != null) {

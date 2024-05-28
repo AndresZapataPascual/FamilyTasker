@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_gravity="center">
 
-    <!-- Toolbar para el menú -->
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:titleTextColor="@android:color/white"
         android:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
 
-    <!-- Linear layout horizontal para el botón de crear la lista -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:layout_marginTop="16dp"
             android:hint="@string/HintNombreTarea" />
 
-        <!-- Botón para crear la lista -->
+
         <Button
             android:id="@+id/buttonCreateTarea"
             android:layout_width="85dp"
@@ -44,7 +44,7 @@
 
     </LinearLayout>
 
-    <!-- Listado de listas de tareas existentes -->
+
     <TextView
         android:id="@+id/textViewListTitle"
         android:layout_width="wrap_content"

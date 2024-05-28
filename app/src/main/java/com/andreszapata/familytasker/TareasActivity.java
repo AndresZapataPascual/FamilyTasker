@@ -37,10 +37,10 @@ public class TareasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tareas_activity);
 
-        // Obtener el ID de la lista del Intent
+        // Obtiene el ID de la lista
         idLista = getIntent().getStringExtra("idLista");
 
-        // Configurar el Toolbar con el nombre de la lista como título
+        // Pone el nombre de la lista como título del toolbar
         String nombreLista = getIntent().getStringExtra("nombreLista");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,7 +48,7 @@ public class TareasActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(nombreLista);
         }
 
-        // Inicializar la referencia a la base de datos
+        // Inicializa la base de datos
         databaseReference = FirebaseDatabase.getInstance().getReference("Tareas").child(idLista);
 
         editTextTarea = findViewById(R.id.editTextListName);
@@ -71,14 +71,14 @@ public class TareasActivity extends AppCompatActivity {
                 String nombreTarea = editTextTarea.getText().toString().trim();
 
                 if (!nombreTarea.isEmpty()) {
-                    // Generar un ID único para la tarea
+                    // Generar un ID para la tarea
                     String tareaId = databaseReference.push().getKey();
 
                     // Guardar la tarea en la base de datos asociada al ID de la lista
                     Tarea nuevaTarea = new Tarea(tareaId, nombreTarea, false, idLista);// Aquí se pasa el ID de la lista
                     databaseReference.child(tareaId).setValue(nuevaTarea);
 
-                    // Limpiar el campo de texto después de guardar la tarea
+                    // Limpia el campo de texto
                     editTextTarea.setText("");
 
                     // Notificar al usuario que la tarea se creó correctamente

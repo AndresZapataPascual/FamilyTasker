@@ -8,7 +8,7 @@ public class Usuario {
     private String contraseña;
 
     public Usuario() {
-        // Constructor vacío requerido por Firebase
+
     }
 
     public Usuario(String id, String nombre, String correo, String contraseña) {

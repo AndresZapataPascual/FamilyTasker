@@ -62,6 +62,7 @@ public class RegistroActivity extends AppCompatActivity {
                 String contraseña = editTextContraseña.getText().toString();
                 String userId = databaseReference.push().getKey();
 
+                //verificar que los campos esten completos
                 if (TextUtils.isEmpty(nombre) || TextUtils.isEmpty(correo) || TextUtils.isEmpty(contraseña)) {
                     Toast.makeText(RegistroActivity.this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
                 } else {
@@ -71,6 +72,7 @@ public class RegistroActivity extends AppCompatActivity {
 
                     Toast.makeText(RegistroActivity.this, "Usuario guardado correctamente", Toast.LENGTH_SHORT).show();
 
+                    //limpiar las entradas de texto
                     editTextNombre.setText("");
                     editTextCorreo.setText("");
                     editTextContraseña.setText("");

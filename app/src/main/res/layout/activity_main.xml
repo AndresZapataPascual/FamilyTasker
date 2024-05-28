@@ -10,7 +10,7 @@
     android:paddingTop="64dp"
     android:paddingBottom="32dp">
 
-    <!-- Encabezado con el logo y el nombre de la app -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:textColor="@color/black"/>
     </LinearLayout>
 
-    <!-- Campos de entrada para correo electrónico y contraseña -->
+
     <EditText
         android:id="@+id/editTextCorreo"
         android:layout_width="match_parent"
@@ -69,7 +69,8 @@
         android:textSize="16sp"
         android:inputType="textPassword" >
     </EditText>
-    <!-- Botón de inicio de sesión -->
+
+
     <Button
         android:id="@+id/buttonSignIn"
         android:layout_width="match_parent"
@@ -81,7 +82,7 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp" />
 
-    <!-- Enlace para crear cuenta -->
+
     <Button
         android:id="@+id/buttonSignUp"
         android:layout_width="match_parent"

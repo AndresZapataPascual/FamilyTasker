@@ -40,7 +40,7 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
         // Obtener la tarea actual
         final Tarea tarea = getItem(position);
 
-        // Obtener referencias a los elementos de la fila
+
         TextView textViewTarea = listItemView.findViewById(R.id.textViewTarea);
         Button buttonCompletar = listItemView.findViewById(R.id.buttonCompletar);
         Button buttonEliminar = listItemView.findViewById(R.id.buttonEliminar);
@@ -55,19 +55,34 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
             textViewTarea.setPaintFlags(textViewTarea.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
         }
 
-        // Manejar el clic en el botón "Completar"
+
         buttonCompletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tarea.setCompletada(!tarea.isCompletada());
-                // Guardar los cambios en la base de datos u otro almacenamiento
-                // Notificar al adaptador que los datos han cambiado
-                notifyDataSetChanged();
+
+                // Obtener la referencia a la base de datos para esta tarea
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Tareas")
+                        .child(tarea.getIdLista())
+                        .child(tarea.getId());
+
+                // Actualizar el estado de la tarea en la base de datos
+                databaseReference.child("completada").setValue(tarea.isCompletada()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // Notificar al adaptador que los datos han cambiado
+                            notifyDataSetChanged();
+                            Toast.makeText(getContext(), "Estado de tarea actualizado correctamente", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Error al actualizar el estado de la tarea: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
 
-        // Manejar el clic en el botón "Eliminar"
-        // Manejar el clic en el botón "Eliminar"
+
         buttonEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +103,7 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
                                 notifyDataSetChanged();
                                 Toast.makeText(getContext(), "Tarea eliminada correctamente", Toast.LENGTH_SHORT).show();
                             } else {
-                                // Si hay un error al eliminar la tarea de la base de datos, muestra un mensaje de error
+                                // mensaje de error
                                 Toast.makeText(getContext(), "Error al eliminar la tarea: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
