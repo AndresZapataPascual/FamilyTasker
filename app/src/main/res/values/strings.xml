@@ -15,5 +15,6 @@
     <string name="txtTerminada">Completar</string>
     <string name="txtEliminar">Eliminar </string>
     <string name="itemlistatxtbtn">Eliminar</string>
-    <string name="txtbtnCerrarSesion"></string>
+    <string name="txtbtnCerrarSesion">Cerrar Sesión</string>
+    <string name="txtbtnAtras">Atras</string>
 </resources>

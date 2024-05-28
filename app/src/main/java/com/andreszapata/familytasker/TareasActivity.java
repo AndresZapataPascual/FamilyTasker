@@ -1,5 +1,6 @@
 package com.andreszapata.familytasker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,7 @@ public class TareasActivity extends AppCompatActivity {
 
     private EditText editTextTarea;
     private Button buttonCrearTarea;
+    private Button btnAtras;
     private ListView listViewTareas;
 
     private DatabaseReference databaseReference;
@@ -52,6 +54,7 @@ public class TareasActivity extends AppCompatActivity {
         editTextTarea = findViewById(R.id.editTextListName);
         buttonCrearTarea = findViewById(R.id.buttonCreateTarea);
         listViewTareas = findViewById(R.id.listViewtasks);
+        btnAtras = findViewById(R.id.btnAtras);
 
         // Inicializar la lista de tareas y el adaptador
         tareas = new ArrayList<>();
@@ -84,6 +87,16 @@ public class TareasActivity extends AppCompatActivity {
                     // Notificar al usuario si el campo de texto está vacío
                     Toast.makeText(TareasActivity.this, "Por favor, ingresa el nombre de la tarea", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        btnAtras.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(TareasActivity.this, ListaActivity.class);
+                startActivity(intent);
             }
         });
     }

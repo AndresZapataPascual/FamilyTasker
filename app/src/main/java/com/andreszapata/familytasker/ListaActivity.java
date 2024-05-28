@@ -27,6 +27,7 @@ public class ListaActivity extends AppCompatActivity {
 
     private EditText editTextListName;
     private Button buttonCreateList;
+    private Button btnCerrarSesion;
     private ListView listViewLists;
     private ListaAdapter listaAdapter;
     private ArrayList<Lista> listas;
@@ -59,6 +60,7 @@ public class ListaActivity extends AppCompatActivity {
         editTextListName = findViewById(R.id.editTextListName);
         buttonCreateList = findViewById(R.id.buttonCreateList);
         listViewLists = findViewById(R.id.listViewLists);
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
 
         // Inicializar la lista
         listas = new ArrayList<>();
@@ -103,6 +105,16 @@ public class ListaActivity extends AppCompatActivity {
                 intent.putExtra("idLista", listaSeleccionada.getId());
 
                 // Iniciar la actividad de tareas
+                startActivity(intent);
+            }
+        });
+
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ListaActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
